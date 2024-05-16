@@ -5,7 +5,15 @@ import { useEffect } from "react";
 import { useGlobalContext } from "@/app/context/globalContext";
 import { Skeleton } from "@/components/ui/skeleton";
 
-function FlyToActiveCity({ activeCityCoords }) {
+interface ActiveCityCoords {
+  lat: number;
+  lon: number;
+}
+function FlyToActiveCity({
+  activeCityCoords,
+}: {
+  activeCityCoords: ActiveCityCoords;
+}) {
   const map = useMap();
 
   useEffect(() => {
@@ -17,7 +25,7 @@ function FlyToActiveCity({ activeCityCoords }) {
       map.flyTo(
         [activeCityCoords.lat, activeCityCoords.lon],
         zoomLev,
-        flyToOptions,
+        flyToOptions
       );
     }
   }, [activeCityCoords, map]);
