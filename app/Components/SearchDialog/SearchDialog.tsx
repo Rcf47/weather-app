@@ -11,7 +11,7 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import React, { useEffect, useRef, useState } from "react";
 
 function SearchDialog() {
-  const buttonRef = useRef(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
   const { geoCodeList, inputValue, handleInput } = useGlobalContext();
   const { setActiveCityCoords } = useGlobalContextUpdate();
   const [hoveredIndex, setHoveredIndex] = useState(0);
@@ -20,9 +20,9 @@ function SearchDialog() {
     setActiveCityCoords([lat, lon]);
   };
   useEffect(() => {
-    const handleKeyDown = (event) => {
+    const handleKeyDown = (event: KeyboardEvent) => {
       if (event.metaKey && event.key === "f") {
-        event.preventDefault(); // предотвратить стандартное поведение браузера для Alt + F
+        event.preventDefault(); // предотвратить стандартное поведение браузера для Meta + F
         if (buttonRef.current) {
           buttonRef.current.click();
         }
@@ -75,7 +75,7 @@ function SearchDialog() {
                         lat: number;
                         lon: number;
                       },
-                      index: number,
+                      index: number
                     ) => {
                       const { country, state, name } = item;
                       return (
@@ -92,7 +92,7 @@ function SearchDialog() {
                           </p>
                         </li>
                       );
-                    },
+                    }
                   )}
               </ul>
             </CommandList>
