@@ -38,7 +38,6 @@ export default function Home() {
             <Pressure />
           </div>
           <div className="mapbox-con mt-4 flex gap-4">
-            <Mapbox />
             <DefaultCity />
           </div>
         </div>
