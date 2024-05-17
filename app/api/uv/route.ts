@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
+  const searchParams = req.nextUrl.searchParams;
   try {
-    const searchParams = req.nextUrl.searchParams;
     const lat = searchParams.get("lat");
     const lon = searchParams.get("lon");
 
@@ -14,7 +14,7 @@ export async function GET(req: NextRequest) {
     const uvData = await res.json();
     return NextResponse.json(uvData);
   } catch (error) {
-    console.log("Error in getting uv data");
+    console.log("Error in getting uv data", (error as Error).message);
     return new Response("Error getting uv data", { status: 500 });
   }
 }

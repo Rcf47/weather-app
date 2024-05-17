@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
+  const searchParams = req.nextUrl.searchParams;
   try {
     const apiKey = process.env.OPENWEATHERMAP_API_KEY;
 
-    const searchParams = req.nextUrl.searchParams;
     const lat = searchParams.get("lat");
     const lon = searchParams.get("lon");
 
@@ -17,7 +17,7 @@ export async function GET(req: NextRequest) {
     const dailyData = await dailyRes.json();
     return NextResponse.json(dailyData);
   } catch (error) {
-    console.log("Error in getting daily data");
+    console.log("Error in getting daily data", (error as Error).message);
     return new Response("Error in getting daily data", { status: 500 });
   }
 }
